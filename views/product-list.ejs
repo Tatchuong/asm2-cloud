@@ -1,0 +1,103 @@
+<html>
+
+<head>
+    <title>Product List</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <style type="text/css">
+      body {
+    background-color: #F0FFFF;
+    }
+
+    a{ 
+        color: #0000FF;
+    }
+    p {
+      text-align: center;
+        color: #ffffff;
+    }
+    .nav-item{
+          font-size:15px;
+          font-weight:bold;
+          color:#15b7b9;
+          padding: 0 10px;
+          
+          text-transform:uppercase;
+          text-decoration:none;
+
+    }
+      
+
+        
+    </style>
+</head>
+
+<body>
+    <section class="myheader " >
+        <div class="container ">
+            <div class="row">
+                <div class="col-md-2 py-2">
+                    <img src="https://shop.mixigaming.com/wp-content/uploads/2019/06/logo-mixi-t%C3%A9t.png" class="img-fluid" style="width:120px;height:72px;">
+                </div>
+                <div class="col-md-4 py-4">
+                   <div>
+                      <ul class="nav justify-content-center">
+                      <li class="nav-item">
+                          <a class="nav-link" href="/home">Home</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="/product-list">Product List</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="/add-product">Add product</a>
+                        </li>
+                        
+                      </ul> 
+                  </div>
+                </div>
+                <div class="col-md-3 py-4" style="margin-left: 250px;">
+                  <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Search product" aria-label="Search product">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                  </form>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+    <section class="container">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Product Name</th>
+                    <th>Category</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Edit</th>
+                </tr>
+            </thead>
+            <% products.forEach((entry) => { %>
+            <tr ondblclick="handleUpdateProduct('<%= entry.id %>')">
+                <td><%= entry.name %></td>
+                <td><%= entry.category %></td>
+                <td><%= entry.price %></td>
+                <td><%= entry.quantity %></td>
+                <td>
+                    <input class="btn btn-primary" type="button" value="Edit"
+                        onclick="handleUpdateProduct('<%= entry.id %>')">
+                </td>
+            </tr>
+            <% }) %>
+        </table>
+        <script>
+            function handleUpdateProduct(value) {
+                $(location).attr('href', '/update-product/' + value);
+            }
+        </script>
+        </section>
+</body>
+
+</html>
